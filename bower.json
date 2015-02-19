@@ -1,0 +1,29 @@
+{
+  "name": "bw-test",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ingdir/bw-test",
+  "authors": [
+    "Max Shirshin <max.shirshin@gmail.com>"
+  ],
+  "description": "BW test app",
+  "main": "release/bw.js",
+  "keywords": [
+    "brainwatch"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1",
+    "jspath": "0.3.0",
+    "qunit": "1.17.1",
+    "requirejs": "2.1.16"
+  }
+}

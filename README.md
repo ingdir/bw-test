@@ -1,22 +1,35 @@
 # BrandWatch TagCloud
 
-## Build and run
+## See it on the web
 
-You have two options to see the result:
+[Click here](http://rawgit.com/ingdir/bw-test/master/release/index.html) to see the page (this link uses `rawgit.com`).
+Use it to see how the latest version built by the author works.
 
-### On the Web
+## Run locally
 
-[Click here](http://rawgit.com/ingdir/bw-test/master/release/index.html) to see the page (this link uses `rawgit.com`)
+You can configure and run this project locally.
 
-### Run locally
+### Configuration
 
-To open the project locally, do the following:
+1. Start by installing `node.js` & `npm`, if you don't have them yet.
+2. Install `gulp` and `bower` packages if you don't have them yet:
 
-  * Run `npm install` to get all modules
-  * Optionally: `npm run build` to rebuild all files (but there's a copy in the repo)
-  * Run a local HTTP server and set the `/release` folder as root
-  * Open `index.html` to see the tag cloud
-  * Resize the browser window and see the tags rearranged
-  * Open `tests.html` for unit tests, or click the *Run tests* link at the bottom of the default page
+`npm install -g gulp`
+`npm install -g bower`
+
+3. Run `npm install` to get all local dependencies.
+4. Run `gulp serve` to run a local server that would listen to [http://localhost:8080](http://localhost:8080) on your machine.
+
+### Running with your own local HTTP server
+
+If you prefer to run your own local server:
+
+1. Run steps 1 through 3 from the **Configuration** above.
+2. Run `gulp release` once to compile the assets.
+3. Point your HTTP server to the `./release` folder as its root folder.
+  
+## Tests
+
+Open [http://localhost:8080/tests.html](http://localhost:8080/tests.html) for unit tests, or click the *Run tests* link at the bottom of the app page.
 
 

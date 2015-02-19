@@ -1,5 +1,5 @@
 define(function(require) {
-    var JSPath = require('external/jspath');
+    var JSPath = require('external/jspath/lib/jspath');
 
     /**
      * A factory that returns a function.
