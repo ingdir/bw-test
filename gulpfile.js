@@ -1,20 +1,22 @@
 var gulp = require('gulp');
-var merge = require('merge-stream');
 var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var rjs = require('gulp-requirejs');
 var server = require('gulp-express');
 
-gulp.task('assets', function() {
-    console.log('Copying assets...');
-    var html = gulp.src('./src/*.html')
+gulp.task('assets:html', function() {
+    return gulp.src('./src/*.html')
         .pipe(gulp.dest('./release'));
+});
 
-    var data = gulp.src('./src/data/*')
+gulp.task('assets:data', function() {
+    return gulp.src('./src/data/*')
         .pipe(gulp.dest('./release/data'));
+});
 
-    var libs = gulp.src([
+gulp.task('assets:libs', function() {
+    return gulp.src([
         './src/lib/jquery/jquery.js',
         './src/lib/jspath/lib/jspath.js',
         './src/lib/qunit/qunit/qunit.js',
@@ -22,19 +24,20 @@ gulp.task('assets', function() {
     ])
         .pipe(uglify())
         .pipe(gulp.dest('./release/lib'));
+});
 
-    var css = gulp.src([
+gulp.task('assets:css', function() {
+    return gulp.src([
         './src/lib/qunit/qunit/qunit.css'
     ])
         .pipe(minifyCSS())
         .pipe(gulp.dest('./release/css'));
-    
-    return merge(html, data, libs, css);
 });
 
+gulp.task('assets', ['assets:html', 'assets:data', 'assets:libs', 'assets:css']);
+
 gulp.task('js', function() {
-    console.log('Compiling app...');
-    var app = rjs({
+    rjs({
         baseUrl: './src/blocks',
         paths: {
             external: '../lib'
@@ -45,8 +48,7 @@ gulp.task('js', function() {
         .pipe(uglify())
         .pipe(gulp.dest('./release/'));
 
-    console.log('Compiling tests...');
-    var tests = rjs({
+    rjs({
         baseUrl: './src/blocks',
         paths: {
             external: '../lib'
@@ -56,12 +58,9 @@ gulp.task('js', function() {
     })
         .pipe(uglify())
         .pipe(gulp.dest('./release/'));
-    
-    return merge(app, tests);
 });
 
 gulp.task('less', function () {
-    console.log('Compiling LESS...');
     return gulp.src('./src/blocks/main/main.less')
         .pipe(less())
         .pipe(minifyCSS())
@@ -71,12 +70,11 @@ gulp.task('less', function () {
 gulp.task('release', ['assets', 'js', 'less']);
 
 gulp.task('serve', ['release'], function() {
-    server.run({
-        file: './app.js'
-    });
+    server.run(['./app.js']);
 
+    gulp.watch('./src/**/*.js', ['js']);
     gulp.watch('./src/blocks/**/*.less', ['less']);
-    gulp.watch('./src/*.html', ['assets']);
+    gulp.watch('./src/*.html', ['assets:html']);
 });
 
 gulp.task('default', ['serve']);
