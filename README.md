@@ -17,14 +17,15 @@ You can configure and run this project locally.
 `npm install -g gulp`
 `npm install -g bower`
 
-3. Run `npm install` to get all local dependencies.
-4. Run `gulp serve` to run a local server that would listen to [http://localhost:8080](http://localhost:8080) on your machine.
+3. Run `npm install` to get all local npm dependencies.
+4. Run `bower install` to get all local bower dependencies.
+5. Run `gulp serve` to run a local server that would listen to [http://localhost:8080](http://localhost:8080) on your machine.
 
 ### Running with your own local HTTP server
 
 If you prefer to run your own local server:
 
-1. Run steps 1 through 3 from the **Configuration** above.
+1. Run steps 1 through 4 from the **Configuration** above.
 2. Run `gulp release` once to compile the assets.
 3. Point your HTTP server to the `./release` folder as its root folder.
   
