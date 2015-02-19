@@ -12,11 +12,7 @@ You can configure and run this project locally.
 ### Configuration
 
 1. Start by installing `node.js` & `npm`, if you don't have them yet.
-2. Install `gulp` and `bower` packages if you don't have them yet:
-
-`npm install -g gulp`
-`npm install -g bower`
-
+2. Run `npm install -g gulp` and `npm install -g bower` if you don't have `gulp` and `bower` yet.
 3. Run `npm install` to get all local npm dependencies.
 4. Run `bower install` to get all local bower dependencies.
 5. Run `gulp serve` to run a local server that would listen to [http://localhost:8080](http://localhost:8080) on your machine.
