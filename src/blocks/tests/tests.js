@@ -5,7 +5,7 @@ define(function(require) {
 
     var $f = $('#qunit-fixture');
     $.ajax({
-        url: '/data/stats.json',
+        url: 'data/stats.json',
         dataType: 'json'
     })
         .done(test);

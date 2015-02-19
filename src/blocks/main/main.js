@@ -9,7 +9,7 @@ define(function(require) {
         model = null;
 
     $.ajax({
-        url: '/data/stats.json',
+        url: 'data/stats.json',
         dataType: 'json'
     })
         .then(function(data) {
