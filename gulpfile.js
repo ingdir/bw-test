@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var merge = require('merge-stream');
 var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
@@ -7,13 +8,13 @@ var server = require('gulp-express');
 
 gulp.task('assets', function() {
     console.log('Copying assets...');
-    gulp.src('./src/*.html')
+    var html = gulp.src('./src/*.html')
         .pipe(gulp.dest('./release'));
 
-    gulp.src('./src/data/*')
+    var data = gulp.src('./src/data/*')
         .pipe(gulp.dest('./release/data'));
 
-    gulp.src([
+    var libs = gulp.src([
         './src/lib/jquery/jquery.js',
         './src/lib/jspath/lib/jspath.js',
         './src/lib/qunit/qunit/qunit.js',
@@ -22,16 +23,18 @@ gulp.task('assets', function() {
         .pipe(uglify())
         .pipe(gulp.dest('./release/lib'));
 
-    gulp.src([
+    var css = gulp.src([
         './src/lib/qunit/qunit/qunit.css'
     ])
         .pipe(minifyCSS())
         .pipe(gulp.dest('./release/css'));
+    
+    return merge(html, data, libs, css);
 });
 
 gulp.task('js', function() {
     console.log('Compiling app...');
-    rjs({
+    var app = rjs({
         baseUrl: './src/blocks',
         paths: {
             external: '../lib'
@@ -43,7 +46,7 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./release/'));
 
     console.log('Compiling tests...');
-    rjs({
+    var tests = rjs({
         baseUrl: './src/blocks',
         paths: {
             external: '../lib'
@@ -53,11 +56,13 @@ gulp.task('js', function() {
     })
         .pipe(uglify())
         .pipe(gulp.dest('./release/'));
+    
+    return merge(app, tests);
 });
 
 gulp.task('less', function () {
     console.log('Compiling LESS...');
-    gulp.src('./src/blocks/main/main.less')
+    return gulp.src('./src/blocks/main/main.less')
         .pipe(less())
         .pipe(minifyCSS())
         .pipe(gulp.dest('./release/css'));
