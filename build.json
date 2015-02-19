@@ -1,0 +1,17 @@
+{
+    "appDir": "src",
+    "baseUrl": "blocks",
+    "paths": {
+        "external": "../lib"
+    },
+
+    "dir": "release",
+    "modules": [
+        {
+            "name": "../bw"
+        },
+        {
+            "name": "../bwtests"
+        }
+    ]
+}

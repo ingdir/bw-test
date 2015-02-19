@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BW Tag Cloud</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="lib/jquery.js"></script>
+    <script data-main="bw" src="lib/require.js"></script>
+</head>
+<body>
+
+<div class="b-head">
+    <div class="b-head__title">Brandwatch Tag Cloud</div>
+    <div class="b-head__menu">
+        Popularity means:&nbsp;<select class="b-head__pop">
+            <option value="burst">burst</option>
+            <option value="volume">volume</option>
+            <option value="sentimentScore">sentimentScore</option>
+        </select>
+    </div>
+</div>
+<div class="b-page">
+    <div class="b-cloud"></div>
+    <div class="b-stats b-stats_empty">
+        <div class="b-stats__word"></div>
+        Total mentions: <span class="b-stats__total"></span>
+        <div class="b-stats__breakdown">
+            Positive mentions: <span class="b-stats__positive"></span><br>
+            Neutral mentions: <span class="b-stats__neutral"></span><br>
+            Negative mentions: <span class="b-stats__negative"></span><br>
+        </div>
+    </div>
+</div>
+<p>
+    <a href="tests.html">Run tests</a>
+</p>
+</body>
+</html>

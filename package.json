@@ -1,0 +1,23 @@
+{
+    "name": "bw",
+    "version": "0.1.0",
+    "author": "max.shirshin@gmail.com",
+    "dependencies": {
+        "requirejs": "2.1.16",
+        "jspath": "0.3.0",
+        "jquery": "1.9.1",
+        "less": "2.4.0",
+        "qunitjs": "1.17.1"
+    },
+
+    "scripts": {
+        "getlibs":
+            "cp node_modules/jquery/jquery.js src/lib && cp node_modules/jspath/lib/jspath.js src/lib && cp node_modules/requirejs/require.js src/lib && cp node_modules/qunitjs/qunit/qunit.js src/lib && cp node_modules/qunitjs/qunit/qunit.css src/css ",
+        "less":
+            "lessc -x ./src/blocks/main/main.less > ./src/css/main.css",
+        "require":
+            "node node_modules/requirejs/bin/r.js -o build.json",
+        "build":
+            "npm run getlibs && npm run less && npm run require"
+    }
+}

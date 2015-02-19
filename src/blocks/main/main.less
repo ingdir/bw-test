@@ -1,0 +1,24 @@
+.clearfix() {
+    &:after {
+        display: block;
+        content: '';
+
+        clear: both;
+    }
+}
+
+@negativeColor: #bc0018;
+@positiveColor: #42bb00;
+
+html, body {
+    font: normal 15px Arial, sans-serif;
+
+    padding: 0;
+    margin: 0;
+}
+
+@import '../page/page';
+@import '../head/head';
+@import '../cloud/cloud';
+@import '../stats/stats';
+
